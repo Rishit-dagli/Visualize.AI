@@ -10,6 +10,20 @@ from tensorflow.keras.applications import EfficientNetB4
 from tensorflow.keras.applications import MobileNetV2
 import json
 
+from google.cloud import storage
+
+bucket_name = "postmanhack"
+
+
+def upload_blob(bucket_name, filename, dest_filename):
+    """Uploads a file to the bucket."""
+    client = storage.Client()
+    bucket = client.get_bucket(bucket_name)
+    blob = bucket.blob(dest_filename)
+    blob.upload_from_filename(filename)
+    blob.make_public()
+    return blob.public_url
+
 def viz_grad_cam(model, image, interpolant=0.5):
     """VizGradCAM - Displays GradCAM based on Keras / TensorFlow models
     using the gradients from the last convolutional layer. This function
