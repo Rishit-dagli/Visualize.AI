@@ -48,13 +48,19 @@ Have any questions, doubts or want to present your opinions, views? You're alway
 ## Citations
 
 ```bibtex
-@misc{hughes2016open,
-      title={An open access repository of images on plant health to enable the development of mobile disease diagnostics}, 
-      author={David. P. Hughes and Marcel Salathe},
-      year={2016},
-      eprint={1511.08060},
-      archivePrefix={arXiv},
-      primaryClass={cs.CY}
+@article{Selvaraju_2019,
+   title={Grad-CAM: Visual Explanations from Deep Networks via Gradient-Based Localization},
+   volume={128},
+   ISSN={1573-1405},
+   url={http://dx.doi.org/10.1007/s11263-019-01228-7},
+   DOI={10.1007/s11263-019-01228-7},
+   number={2},
+   journal={International Journal of Computer Vision},
+   publisher={Springer Science and Business Media LLC},
+   author={Selvaraju, Ramprasaath R. and Cogswell, Michael and Das, Abhishek and Vedantam, Ramakrishna and Parikh, Devi and Batra, Dhruv},
+   year={2019},
+   month={Oct},
+   pages={336–359}
 }
 ```
 
