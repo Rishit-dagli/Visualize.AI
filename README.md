@@ -29,6 +29,43 @@ functions-framework-python --target conv_vis
 
 Your function should now be running on localhost:8080 🚀.
 
+## About the API📝
+
+This API was deployed on GCP Cloud Functions and is extremely easy to deploy 
+your own such API. You can simply deploy it to your own Cloud Function with 
+this command:
+
+```sh
+gcloud functions deploy conv_vis --runtime python38 --memory 8196MB --trigger-http --allow-unauthenticated
+```
+
+Or even do this with the Google Cloud GUI.
+
+### Using the API
+
+#### Endpoint URL
+
+```
+https://us-central1-sound-fastness-257416.cloudfunctions.net
+```
+
+#### Request Params
+
+| Key         | Description                                                                     |
+|-------------|---------------------------------------------------------------------------------|
+| image       | URL of the image you put in the model                                           |
+| destination | File name of the destination image, remember to use extension (.png , .jpg etc) |
+
+
+#### Just want to test out?
+
+I got you covered, I have added an example image as the default value for you to try out here are the default values:
+
+| Key         | Default Value                   |
+|-------------|---------------------------------|
+| image       | https://i.imgur.com/taUKyu1.jpg |
+| destination | image.png                       |
+
 ## Lint ✅
 
 This project uses [***GitHub Super Linter***](https://github.com/github/super-linter) which is Combination of multiple linters to install as a GitHub Action.
