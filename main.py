@@ -38,11 +38,9 @@ def viz_grad_cam(model, image, interpolant=0.5):
     Returns:
     Heatmap Array?
     """
-    
+
     # Sanity Check
-    assert (
-            0 < interpolant < 1
-    ), "Heatmap Interpolation Must Be Between 0 - 1"
+    assert 0 < interpolant < 1, "Heatmap Interpolation Must Be Between 0 - 1"
 
     last_conv_layer = next(
         x for x in model.layers[::-1] if isinstance(x, tf.keras.layers.Conv2D)
@@ -143,7 +141,7 @@ def conv_vis(request):
     public_url = upload_blob(bucket_name, "/tmp/finalimage.png", dest)
 
     response = {}
-    response['output_image'] = public_url
+    response["output_image"] = public_url
     response = json.dumps(response)
 
     return response
