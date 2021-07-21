@@ -27,3 +27,11 @@ functions-framework-python --target conv_vis
 ```
 
 Your function should now be running on localhost:8080 🚀.
+
+## Lint ✅
+
+This project uses [***GitHub Super Linter***](https://github.com/github/super-linter) which is Combination of multiple linters to install as a GitHub Action.
+
+Following Linters are used internally by super linter (enabled for this project):
+- Python: [Black](https://github.com/psf/black)
+- YAML: [YamlLint](https://github.com/adrienverge/yamllint)
