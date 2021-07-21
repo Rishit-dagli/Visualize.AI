@@ -22,6 +22,4 @@ jobs:
           VALIDATE_PYTHON_BLACK: true
           VALIDATE_PYTHON_PYLINT: true
           VALIDATE_PYTHON_MYPY: true
-          VALIDATE_PYTHON_FLAKE8: false
-          VALIDATE_PYTHON_ISORT: false
           VALIDATE_MARKDOWN: false
