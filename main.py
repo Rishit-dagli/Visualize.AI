@@ -24,6 +24,7 @@ def upload_blob(bucket_name, filename, dest_filename):
     blob.make_public()
     return blob.public_url
 
+
 def viz_grad_cam(model, image, interpolant=0.5):
     """VizGradCAM - Displays GradCAM based on Keras / TensorFlow models
     using the gradients from the last convolutional layer. This function
@@ -112,3 +113,37 @@ def viz_grad_cam(model, image, interpolant=0.5):
     plt.imsave("/tmp/finalimage.png", final_image)
 
     return True
+
+
+def conv_vis(request):
+    global bucket_name
+
+    request_json = request.get_json(silent=True)
+    request_args = request.args
+
+    if request_json and "image" in request_json:
+        url = request_json["image"]
+    elif request_args and "image" in request_args:
+        url = request_args["image"]
+    else:
+        url = "https://i.imgur.com/taUKyu1.jpg"
+
+    if request_json and "destination" in request_json:
+        dest = request_json["destination"]
+    elif request_args and "destination" in request_args:
+        dest = request_args["destination"]
+    else:
+        dest = "image.png"
+
+    image_path = tf.keras.utils.get_file("image.png", url)
+    test_img = img_to_array(load_img(image_path, target_size=(224, 224)))
+
+    viz_grad_cam(MobileNetV2(weights="imagenet"), test_img)  # load model
+
+    public_url = upload_blob(bucket_name, "/tmp/finalimage.png", dest)
+
+    response = {}
+    response['output_image'] = public_url
+    response = json.dumps(response)
+
+    return response
