@@ -11,3 +11,19 @@ This repo creates an API to better understand and visualize the inner workings
 of a CNN with GradCam; currently MobileNet powered by TensorFlow and Google 
 Cloud Functions. This also shows using the Postman Visualizer to make sense of 
 the API responses and visualize the journey of an image in the model.
+
+## Run Locally
+
+To get up and running with this API, run the following commands, make sure you 
+have Python installed. This runs the function in built-in local development 
+server:
+
+```
+git clone https://github.com/Rishit-dagli/Visualize.AI # or clone your own fork
+cd Visualize.AI
+pip install -r requirements.txt
+functions-framework-python --target conv_vis
+# Can also use --debug
+```
+
+Your function should now be running on localhost:8080 🚀.
