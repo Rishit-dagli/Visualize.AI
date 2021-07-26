@@ -64,7 +64,7 @@ I got you covered, I have added an example image as the default value for you to
 | Key         | Default Value                   |
 |-------------|---------------------------------|
 | image       | https://i.imgur.com/taUKyu1.jpg |
-| destination | image.png                       |
+| destination | A random string                 |
 
 ## Lint ✅
 
