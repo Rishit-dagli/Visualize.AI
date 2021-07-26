@@ -9,17 +9,25 @@ from tensorflow.keras.preprocessing.image import load_img, img_to_array
 from tensorflow.keras.applications import EfficientNetB4
 from tensorflow.keras.applications import MobileNetV2
 import json
+import random
+import string
 
 from google.cloud import storage
 
 bucket_name = "postmanhack"
 
+def random_char(y):
+    return ''.join(random.choice(string.ascii_letters) for x in range(y))
 
 def upload_blob(bucket_name, filename, dest_filename):
     """Uploads a file to the bucket."""
     client = storage.Client()
     bucket = client.get_bucket(bucket_name)
     blob = bucket.blob(dest_filename)
+    try:
+        blob.delete()
+    except:
+        pass
     blob.upload_from_filename(filename)
     blob.make_public()
     return blob.public_url
@@ -38,9 +46,11 @@ def viz_grad_cam(model, image, interpolant=0.5):
     Returns:
     Heatmap Array?
     """
-
+    
     # Sanity Check
-    assert 0 < interpolant < 1, "Heatmap Interpolation Must Be Between 0 - 1"
+    assert (
+            0 < interpolant < 1
+    ), "Heatmap Interpolation Must Be Between 0 - 1"
 
     last_conv_layer = next(
         x for x in model.layers[::-1] if isinstance(x, tf.keras.layers.Conv2D)
@@ -126,14 +136,16 @@ def conv_vis(request):
     else:
         url = "https://i.imgur.com/taUKyu1.jpg"
 
+    print(url)
+
     if request_json and "destination" in request_json:
         dest = request_json["destination"]
     elif request_args and "destination" in request_args:
         dest = request_args["destination"]
     else:
-        dest = "image.png"
+        dest = random_char(7) + ".png"
 
-    image_path = tf.keras.utils.get_file("image.png", url)
+    image_path = tf.keras.utils.get_file("/tmp/image.png", url)
     test_img = img_to_array(load_img(image_path, target_size=(224, 224)))
 
     viz_grad_cam(MobileNetV2(weights="imagenet"), test_img)  # load model
@@ -141,7 +153,7 @@ def conv_vis(request):
     public_url = upload_blob(bucket_name, "/tmp/finalimage.png", dest)
 
     response = {}
-    response["output_image"] = public_url
+    response['output_image'] = public_url
     response = json.dumps(response)
 
     return response
