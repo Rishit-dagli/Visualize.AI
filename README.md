@@ -1,7 +1,7 @@
 # Visualize.AI
 
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://www.postman.com/rishitdagli/workspace/visualizing-an-ml-model/overview)
-[![Lint Code Base](https://github.com/Rishit-dagli/Visualize.AI/actions/workflows/linter.yml/badge.svg)](https://github.com/Rishit-dagli/Visualize.AI/actions/workflows/linter.yml)
+[![Lint Code Base](https://github.com/Rishit-dagli/Visualize.AI/actions/workflows/linter.yml/badge.svg?branch=main)](https://github.com/Rishit-dagli/Visualize.AI/actions/workflows/linter.yml)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 [![GitHub license](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
