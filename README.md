@@ -19,7 +19,7 @@ To get up and running with this API, run the following commands, make sure you
 have Python installed. This runs the function in built-in local development 
 server:
 
-```
+```sh
 git clone https://github.com/Rishit-dagli/Visualize.AI # or clone your own fork
 cd Visualize.AI
 pip install -r requirements.txt
@@ -36,7 +36,11 @@ your own such API. You can simply deploy it to your own Cloud Function with
 this command:
 
 ```sh
-gcloud functions deploy conv_vis --runtime python38 --memory 8196MB --trigger-http --allow-unauthenticated
+gcloud functions deploy conv_vis \
+--runtime python38 \
+--memory 8196MB \
+--trigger-http \
+--allow-unauthenticated
 ```
 
 Or even do this with the Google Cloud GUI.
