@@ -52,6 +52,9 @@ def viz_grad_cam(model, image, interpolant=0.5):
     # Sanity Check
     assert 0 < interpolant < 1, "Heatmap Interpolation Must Be Between 0 - 1"
 
+    # Remove softmax activation from the last layer of MobileNetV2
+    model.layers[ -1 ].activation = None
+
     last_conv_layer = next(
         x for x in model.layers[::-1] if isinstance(x, tf.keras.layers.Conv2D)
     )
